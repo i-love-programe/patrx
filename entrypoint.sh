@@ -8,37 +8,31 @@ DIR_TMP="$(mktemp -d)"
 uuid=ad806487-2d26-4636-98b6-ab85cc8521f7
 mypath=/mylove-fsd79sa
 myport=8080
-
+aid=0
 
 # Write V2Ray configuration
 cat << EOF > ${DIR_TMP}/myconfig.pb
 {
-	"inbounds": [
-		{
-			"listen": "0.0.0.0",
-			"port": $myport,
-			"protocol": "vless",
-			"settings": {
-				"clients": [
-					{
-						"id": "$UUID"
-					}
-				],
-			"decryption": "none"
-		},
-		"streamSettings": {
-			"network": "ws",
-			"wsSettings": {
-					"path": "$mypath"
-				}
-			}
-		}
-	],
-	"outbounds": [
-		{
-			"protocol": "freedom"
-		}
-	]
+    "inbounds": [{
+        "listen": "0.0.0.0",
+        "port": ${myport},
+        "protocol": "vmess",
+        "settings": {
+            "clients": [{
+                "id": "${uuid}",
+                "alterId": ${aid}
+            }]
+        },
+        "streamSettings": {
+            "network": "ws",
+            "wsSettings": {
+                "path": "${mypath}"
+            }
+        }
+    }],
+    "outbounds": [{
+        "protocol": "freedom"
+    }]
 }
 EOF
 
