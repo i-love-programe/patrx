@@ -21,7 +21,7 @@ cat << EOF > ${DIR_TMP}/myconfig.pb
 			"settings": {
 				"clients": [
 					{
-						"id": "$uuid"
+						"id": "$UUID"
 					}
 				],
 			"decryption": "none"
